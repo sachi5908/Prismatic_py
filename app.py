@@ -45,13 +45,12 @@ def calculate():
         # --- DEFINITIVE CALCULATION LOGIC ---
 
         # 2. Calculate the unadjusted coordinates for each station (A, B, C, ... A')
-                # 2. Calculate the unadjusted coordinates for each station (A, B, C, ... A')
         unadjusted_x = np.cumsum(np.insert(departures, 0, 0))
         unadjusted_y = np.cumsum(np.insert(latitudes, 0, 0))
 
         # 3. Total correction = vector needed to close the traverse (opposite of the error)
-        total_correction_dep = error_departure
-        total_correction_lat = error_latitude
+        total_correction_dep = -error_departure
+        total_correction_lat = -error_latitude
 
         # 4. Fraction of total correction to apply at each station (Bowditch — cumulative length from A)
         cumulative_lengths = np.insert(np.cumsum(lengths), 0, 0)
